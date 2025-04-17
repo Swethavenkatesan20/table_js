@@ -36,7 +36,7 @@ export function MyTable({ columns, searchInput, resetButton, headerContainer, bo
 // headerContainer.style.display = "grid";
 // headerContainer.style.gridTemplateColumns = gridColumns; // Apply grid template dynamically
 
-  const columnWidths = columns.map(col => `minmax(150px, ${col.width || '1fr'})`).join(' '); // Use minmax for responsive columns
+  const columnWidths = columns.map(col => `minmax(150px, ${col.width || '1fr'})`).join(' '); //  minmax for responsive columns
 
   headerContainer.style.display = "grid";
   headerContainer.style.gridTemplateColumns = columnWidths; // Apply column widths dynamically
