@@ -1,0 +1,71 @@
+body {
+  font-family: 'Times New Roman', Times, serif;
+  padding: 20px;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+input {
+  margin-bottom: 15px;
+  padding: 8px;
+  width: 100%;
+  max-width: 300px;
+  box-sizing: border-box;
+}
+
+#table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.header-row {
+  display: grid;
+   border: 1px solid grey; 
+  box-sizing: border-box;
+  position: sticky; /* Keep header visible during scroll */
+  top: 0; 
+  background-color: white;
+  min-width: max-content;
+}
+
+.row {
+  display: grid; /* Ensure each row is grid-based */
+  /* border: 1px solid grey; */
+  box-sizing: border-box;
+}
+
+
+
+
+.column {
+  padding: 10px;
+  border: 1px solid black;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+#table-body {
+  display: block; /* Do not use grid directly for the body */
+  width: 100%;
+  min-width: max-content;
+}
+
+.sortable {
+  cursor: pointer;
+  background: beige;
+  text-align: center;
+}
+
+.sortable:hover {
+  background-color: grey;
+}
+
+
+.sort-arrow {
+  margin-left: 6px;
+  font-size: 20px;
+}
