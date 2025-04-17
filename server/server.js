@@ -12,7 +12,7 @@ const app=express();
     const data=[]
 
 
-    for(i=1;i<=10;i++){
+    for(i=1;i<=1000;i++){
         data.push({
             id:i,
             name:names[i%names.length],
