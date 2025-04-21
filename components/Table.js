@@ -10,7 +10,7 @@ export function MyTable({ columns, searchInput, resetButton, headerContainer, bo
   let sortKey = null;
   let sortOrder = 1;
   let filteredData=[]
-
+  
   const rowHeight=40  //40px per row based on my css 
   const buffer=5      //extra row above and below
 
@@ -36,7 +36,7 @@ export function MyTable({ columns, searchInput, resetButton, headerContainer, bo
 // headerContainer.style.display = "grid";
 // headerContainer.style.gridTemplateColumns = gridColumns; // Apply grid template dynamically
 
-  const columnWidths = columns.map(col => `minmax(150px, ${col.width || '1fr'})`).join(' '); //  minmax for responsive columns
+  const columnWidths = columns.map(col => `minmax(150px, ${col.width || '1fr'})`).join(' '); // Use minmax for responsive columns
 
   headerContainer.style.display = "grid";
   headerContainer.style.gridTemplateColumns = columnWidths; // Apply column widths dynamically
@@ -62,11 +62,12 @@ export function MyTable({ columns, searchInput, resetButton, headerContainer, bo
 
         cell.addEventListener("click", () => {
 
-// toggle sort direction
+        // toggle sort direction
 
           sortKey = col.key;
           sortOrder = sortKey===col.key && sortOrder=== 1? -1 : 1
-// rerendering to update arrow
+          
+        // rerendering to update arrow
           createHeader()
 
 
@@ -141,7 +142,11 @@ export function MyTable({ columns, searchInput, resetButton, headerContainer, bo
       columns.forEach(col => {
         const cell = document.createElement("div");
         cell.className = "column";
-        cell.textContent = renderCell(col.key, row[col.key], col.defaultValue);
+        
+        const content = renderCell(col.key, row[col.key], col.defaultValue);
+        // for bg
+        cell.textContent=content
+        cell.setAttribute("data-label", content); // ← for styling
         rowDiv.appendChild(cell);
       });
 
@@ -149,7 +154,53 @@ export function MyTable({ columns, searchInput, resetButton, headerContainer, bo
     });
   }
 
-  
+  // function renderTable(filtered = allData) {
+  //   bodyContainer.innerHTML = "";
+
+  //   const columnWidths = columns
+  //   .map(col => `minmax(150px, ${col.width || '1fr'})`) // Use the same logic as header
+  //   .join(' ');
+
+
+  //   if (sortKey) {
+  //     const col = columns.find(c => c.key === sortKey);
+  //     filtered.sort((a, b) => {
+  //       let valA = a[sortKey] ?? col.defaultValue;
+  //       let valB = b[sortKey] ?? col.defaultValue;
+  //       if (typeof valA === "number") return (valA - valB) * sortOrder;
+  //       return String(valA).localeCompare(String(valB)) * sortOrder;
+  //     });
+  //   }
+
+  //   if (filtered.length === 0) {
+  //     const noData = document.createElement("div");
+  //     noData.className = "row";
+  //     noData.textContent = "No data matched.";
+  //     bodyContainer.appendChild(noData);
+  //     return;
+  //   }
+
+  //   filtered.forEach(row => {
+  //     const rowDiv = document.createElement("div");
+  //     rowDiv.className = "row";
+
+  //     rowDiv.style.display = "grid";
+  //     rowDiv.style.gridTemplateColumns = columnWidths; // Apply consistent grid widths
+
+  //     columns.forEach(col => {
+  //       const cell = document.createElement("div");
+  //       cell.className = "column";
+
+  //       cell.textContent = row[col.key] ?? ""; // Handle empty values
+
+  //       cell.textContent = renderCell(col.key, row[col.key], col.defaultValue);
+  //       rowDiv.appendChild(cell);
+  //     });
+
+  //     bodyContainer.appendChild(rowDiv);
+  //   });
+  // }
+
   const handleSearch = debounce(() => {
     applyFilter();
     renderVirtualRows();
