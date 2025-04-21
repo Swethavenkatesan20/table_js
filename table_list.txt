@@ -1,0 +1,15 @@
+fixed:
+ Default value applied for undefined/null data in cells to avoid empty display.
+ Sort arrow direction now reflects current sort state on header click.
+ Column sorting now handles null and undefined values properly.
+ Responsive design now wraps text in narrow screens without breaking layout.
+ Column configuration now includes width properties.
+ Added Sticky to topbar stays in view while scrolling body content vertically.
+ Replaced inline event handlers with clearly named functions to improve code readability.
+
+
+todo :
+ Implement Sticky header row during scroll
+ highlight sorted columns
+ checkbox to select entire row/columns
+ 
